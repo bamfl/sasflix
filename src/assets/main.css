@@ -2,21 +2,45 @@
 
 :root {
   --accent-color: #ff6b00;
+  --red-color: #ff3b30;
+  --black-color: #040405;
   --text-color: #05090e;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'SF Pro Display', sans-serif;
   font-weight: 400;
   color: var(--text-color);
+  margin: 0;
 }
 
 .text-h1 {
   font-size: 40px;
 }
 
+.text-h2 {
+  font-size: 28px;
+  letter-spacing: -1.45px;
+}
+
+.text-h3 {
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  line-height: 20px;
+}
+
 .fw-700 {
   font-weight: 700;
+}
+
+.fz-14 {
+  font-size: 14px;
 }
 
 .text-center {
@@ -25,4 +49,24 @@ body {
 
 .accent-color {
   color: var(--accent-color);
+}
+
+.mb-xs {
+  margin-bottom: 6px;
+}
+
+.mb-sm {
+  margin-bottom: 16px;
+}
+
+.mb-md {
+  margin-bottom: 24px;
+}
+
+.mb-lg {
+  margin-bottom: 32px;
+}
+
+.mb-xl {
+  margin-bottom: 42px;
 }
