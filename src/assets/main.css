@@ -1,0 +1,28 @@
+@import './fonts.css';
+
+:root {
+  --accent-color: #ff6b00;
+  --text-color: #05090e;
+}
+
+body {
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.text-h1 {
+  font-size: 40px;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.accent-color {
+  color: var(--accent-color);
+}
