@@ -5,15 +5,29 @@
         ikakprosto.ru
       </div>
 
-      <div>
-        <PostComponent />
+      <div v-for="post in firstFivePosts" :key="post.id" class="mb-md">
+        <PostComponent :post="post" />
       </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
+import { computed, onMounted } from 'vue';
 import PostComponent from '@/components/PostComponent.vue';
+import { usePostsStore } from '@/stores/postsStore';
+import { storeToRefs } from 'pinia';
+
+const postsStore = usePostsStore();
+
+const { getPosts } = postsStore;
+const { posts } = storeToRefs(postsStore);
+
+const firstFivePosts = computed(() => posts.value.slice(0, 5));
+
+onMounted(async () => {
+  await getPosts();
+});
 </script>
 
 <style lang="scss">

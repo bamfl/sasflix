@@ -16,7 +16,7 @@
 
       <div class="fz-14">Like</div>
 
-      <div class="like-btn-count">{{ reactions.likes }}</div>
+      <div class="like-btn-count">{{ props.reactions.likes }}</div>
     </button>
 
     <button
@@ -35,20 +35,20 @@
 
       <div class="fz-14">Trash</div>
 
-      <div class="dislike-btn-count">{{ reactions.dislikes }}</div>
+      <div class="dislike-btn-count">{{ props.reactions.dislikes }}</div>
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { IPost } from '@/types';
 import { ref } from 'vue';
 
-const userReaction = ref<boolean | null>(null);
+const props = defineProps<{
+  reactions: IPost['reactions'];
+}>();
 
-const reactions = ref({
-  likes: 192,
-  dislikes: 25,
-});
+const userReaction = ref<boolean | null>(null);
 
 const changeUserReaction = (newValue: boolean) => {
   if (newValue === userReaction.value) {
@@ -69,8 +69,8 @@ const changeUserReaction = (newValue: boolean) => {
 .like-btn,
 .dislike-btn {
   display: flex;
-  flex-wrap: nowrap;
   align-items: center;
+  flex-wrap: nowrap;
   padding: 5.5px 10px;
   background: var(--grey-2-color);
   border-radius: 30px;
@@ -122,5 +122,6 @@ const changeUserReaction = (newValue: boolean) => {
   margin-left: 6px;
   color: #040405;
   opacity: 30%;
+  font-size: 14px;
 }
 </style>
