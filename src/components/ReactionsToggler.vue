@@ -71,8 +71,8 @@ const changeUserReaction = (newValue: boolean) => {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  padding: 5.5px 12px;
-  background: #0404050a;
+  padding: 5.5px 10px;
+  background: var(--grey-2-color);
   border-radius: 30px;
   border: none;
   cursor: pointer;

@@ -10,17 +10,24 @@
       mind.
     </div>
 
-    <div class="row">
-      <ReactionsToggler />
+    <div class="row items-center">
+      <ReactionsToggler class="mr-xs" />
+
+      <button class="underlined-btn accent-color mr-xs">Open comments</button>
+
+      <div class="grey-1-color mr-xs">Today</div>
+
+      <div class="row">
+        <div class="tag first mr-xxs">history</div>
+        <div class="tag mr-xxs">american</div>
+        <div class="tag mr-xxs">crime</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import ReactionsToggler from './ReactionsToggler.vue'
+import ReactionsToggler from './ReactionsToggler.vue';
 </script>
 
-<style lang=scss>
-
-
-</style>
+<style lang="scss"></style>

@@ -1,0 +1,142 @@
+:root {
+  --accent-color: #ff6b00;
+  --red-color: #ff3b30;
+  --black-color: #040405;
+  --grey-1-color: #04040538;
+  --grey-2-color: #0404050a;
+  --text-color: #05090e;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.text-h1 {
+  font-size: 40px;
+}
+
+.text-h2 {
+  font-size: 28px;
+  letter-spacing: -1.45px;
+}
+
+.text-h3 {
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  line-height: 20px;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fz-14 {
+  font-size: 14px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.accent-color {
+  color: var(--accent-color);
+}
+
+.grey-1-color {
+  color: var(--grey-1-color);
+}
+
+.mb-xs {
+  margin-bottom: 6px;
+}
+
+.mb-sm {
+  margin-bottom: 16px;
+}
+
+.mb-md {
+  margin-bottom: 24px;
+}
+
+.mb-lg {
+  margin-bottom: 32px;
+}
+
+.mb-xl {
+  margin-bottom: 42px;
+}
+
+.mr-xxs {
+  margin-right: 4px;
+}
+
+.mr-xs {
+  margin-right: 8px;
+}
+
+.underlined-btn {
+  padding: 0;
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.tag {
+  padding: 0 4px;
+  border-radius: 3px;
+  background: var(--grey-2-color);
+  cursor: pointer;
+  position: relative;
+  height: 18px;
+
+  &.first {
+    margin-left: 9px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 18px;
+      top: 0;
+      left: -16px;
+      background: transparent;
+      border: 9px solid transparent;
+      border-right: 9px solid #f5f5f5;
+
+      &:hover {
+        border-right: 9px solid var(--accent-color);
+      }
+    }
+  }
+
+  &:hover {
+    background: var(--accent-color);
+    color: white;
+
+    &.first {
+      &::before {
+        border-right: 9px solid var(--accent-color);
+      }
+    }
+  }
+}
