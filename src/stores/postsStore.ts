@@ -16,5 +16,16 @@ export const usePostsStore = defineStore('postsStore', () => {
     }
   };
 
-  return { posts, getPosts };
+  const updateReactions = (
+    postId: number,
+    updatedReactions: { likes: number; dislikes: number },
+  ) => {
+    const updatingPost = posts.value.find(post => post.id === postId);
+
+    if (updatingPost) {
+      updatingPost.reactions = updatedReactions;
+    }
+  };
+
+  return { posts, getPosts, updateReactions };
 });

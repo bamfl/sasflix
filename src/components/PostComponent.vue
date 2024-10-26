@@ -6,14 +6,14 @@
   </div>
 
   <div class="row items-center">
-    <ReactionsToggler :reactions="props.post.reactions" class="mr-xs" />
+    <ReactionsToggler :post="props.post" class="mr-xs" />
 
     <button class="underlined-btn accent-color mr-xs">Open comments</button>
 
     <div class="grey-1-color mr-xs">Today</div>
 
     <div v-for="(tag, idx) in props.post.tags" :key="tag" class="row">
-      <div class="tag mr-xxs" :class="idx === 0 ? 'first' : ''">history</div>
+      <div class="tag mr-xxs" :class="idx === 0 ? 'first' : ''">{{ tag }}</div>
     </div>
   </div>
 </template>

@@ -16,7 +16,7 @@
 
       <div class="fz-14">Like</div>
 
-      <div class="like-btn-count">{{ props.reactions.likes }}</div>
+      <div class="like-btn-count">{{ props.post.reactions.likes }}</div>
     </button>
 
     <button
@@ -35,25 +35,69 @@
 
       <div class="fz-14">Trash</div>
 
-      <div class="dislike-btn-count">{{ props.reactions.dislikes }}</div>
+      <div class="dislike-btn-count">{{ props.post.reactions.dislikes }}</div>
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { usePostsStore } from '@/stores/postsStore';
 import type { IPost } from '@/types';
 import { ref } from 'vue';
 
 const props = defineProps<{
-  reactions: IPost['reactions'];
+  post: IPost;
 }>();
+
+const postsStore = usePostsStore();
+
+const { updateReactions } = postsStore;
 
 const userReaction = ref<boolean | null>(null);
 
 const changeUserReaction = (newValue: boolean) => {
+  // Same btn click
   if (newValue === userReaction.value) {
+    const newReactions = { ...props.post.reactions };
+
+    if (newValue === true) {
+      newReactions.likes -= 1;
+    } else {
+      newReactions.dislikes -= 1;
+    }
+
+    updateReactions(props.post.id, newReactions);
+
     userReaction.value = null;
+
     return;
+  }
+
+  // Another btn click
+  if (newValue === true) {
+    if (userReaction.value === false) {
+      updateReactions(props.post.id, {
+        dislikes: props.post.reactions.dislikes - 1,
+        likes: props.post.reactions.likes + 1,
+      });
+    } else {
+      updateReactions(props.post.id, {
+        dislikes: props.post.reactions.dislikes,
+        likes: props.post.reactions.likes + 1,
+      });
+    }
+  } else if (newValue === false) {
+    if (userReaction.value === true) {
+      updateReactions(props.post.id, {
+        likes: props.post.reactions.likes - 1,
+        dislikes: props.post.reactions.dislikes + 1,
+      });
+    } else {
+      updateReactions(props.post.id, {
+        likes: props.post.reactions.likes,
+        dislikes: props.post.reactions.dislikes + 1,
+      });
+    }
   }
 
   userReaction.value = newValue;
