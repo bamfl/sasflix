@@ -1,5 +1,10 @@
 <template>
-  <div class="text-h2 fw-700 mb-xs">{{ props.post.title }}</div>
+  <div
+    class="text-h2 fw-700 mb-xs cursor-pointer"
+    @click="$router.push(`/posts/${post.id}`)"
+  >
+    {{ props.post.title }}
+  </div>
 
   <div class="text-h3 mb-md">
     {{ props.post.body }}
@@ -8,7 +13,12 @@
   <div class="row items-center">
     <ReactionsToggler :post="props.post" class="mr-xs" />
 
-    <button class="underlined-btn accent-color mr-xs">Open comments</button>
+    <button
+      class="underlined-btn accent-color mr-xs"
+      @click="$router.push(`/posts/${post.id}`)"
+    >
+      Open comments
+    </button>
 
     <div class="grey-1-color mr-xs">Today</div>
 

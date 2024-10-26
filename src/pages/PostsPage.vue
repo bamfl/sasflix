@@ -1,15 +1,13 @@
 <template>
-  <main>
-    <div class="posts-page">
-      <div class="text-h1 text-center fw-700 accent-color mb-xl">
-        ikakprosto.ru
-      </div>
-
-      <div v-for="post in firstFivePosts" :key="post.id" class="mb-md">
-        <PostComponent :post="post" />
-      </div>
+  <div class="posts-page">
+    <div class="text-h1 text-center fw-700 accent-color mb-xl">
+      ikakprosto.ru
     </div>
-  </main>
+
+    <div v-for="post in firstFivePosts" :key="post.id" class="mb-md">
+      <PostComponent :post="post" />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
