@@ -75,29 +75,23 @@ const changeUserReaction = (newValue: boolean) => {
 
   // Another btn click
   if (newValue === true) {
-    if (userReaction.value === false) {
-      updateReactions(props.post.id, {
-        dislikes: props.post.reactions.dislikes - 1,
-        likes: props.post.reactions.likes + 1,
-      });
-    } else {
-      updateReactions(props.post.id, {
-        dislikes: props.post.reactions.dislikes,
-        likes: props.post.reactions.likes + 1,
-      });
-    }
+    const isDislikeBtnActive = userReaction.value === false;
+
+    updateReactions(props.post.id, {
+      dislikes: isDislikeBtnActive
+        ? props.post.reactions.dislikes - 1
+        : props.post.reactions.dislikes,
+      likes: props.post.reactions.likes + 1,
+    });
   } else if (newValue === false) {
-    if (userReaction.value === true) {
-      updateReactions(props.post.id, {
-        likes: props.post.reactions.likes - 1,
-        dislikes: props.post.reactions.dislikes + 1,
-      });
-    } else {
-      updateReactions(props.post.id, {
-        likes: props.post.reactions.likes,
-        dislikes: props.post.reactions.dislikes + 1,
-      });
-    }
+    const isLikeBtnActive = userReaction.value === true;
+
+    updateReactions(props.post.id, {
+      likes: isLikeBtnActive
+        ? props.post.reactions.likes - 1
+        : props.post.reactions.likes,
+      dislikes: props.post.reactions.dislikes + 1,
+    });
   }
 
   userReaction.value = newValue;
