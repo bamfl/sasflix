@@ -19,6 +19,7 @@ body {
   font-weight: 400;
   color: var(--text-color);
   margin: 0;
+  overflow-y: scroll;
 }
 
 .row {
@@ -45,6 +46,10 @@ body {
   line-height: 20px;
 }
 
+.fw-600 {
+  font-weight: 600;
+}
+
 .fw-700 {
   font-weight: 700;
 }
@@ -63,6 +68,14 @@ body {
 
 .grey-1-color {
   color: var(--grey-1-color);
+}
+
+.red-color {
+  color: var(--red-color);
+}
+
+.mt-xl {
+  margin-top: 42px;
 }
 
 .mb-xs {
@@ -91,6 +104,14 @@ body {
 
 .mr-xs {
   margin-right: 8px;
+}
+
+.mr-sm {
+  margin-right: 16px;
+}
+
+.mr-md {
+  margin-right: 24px;
 }
 
 .cursor-pointer {

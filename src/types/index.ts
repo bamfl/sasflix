@@ -7,6 +7,7 @@ export interface IPost {
     likes: number;
     dislikes: number;
   };
+  userReaction: boolean | null;
   views: number;
   userId: number;
 }

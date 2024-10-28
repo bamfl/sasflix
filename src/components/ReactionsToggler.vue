@@ -2,12 +2,12 @@
   <div class="reactions-toggler">
     <button
       class="like-btn"
-      :class="userReaction === true ? 'active' : ''"
+      :class="props.post.userReaction === true ? 'active' : ''"
       @click="changeUserReaction(true)"
     >
       <div class="like-icon">
         <img
-          v-if="userReaction === true"
+          v-if="props.post.userReaction === true"
           src="/icons/like-icon-active.svg"
           alt="like-icon-active"
         />
@@ -21,12 +21,12 @@
 
     <button
       class="dislike-btn"
-      :class="userReaction === false ? 'active' : ''"
+      :class="props.post.userReaction === false ? 'active' : ''"
       @click="changeUserReaction(false)"
     >
       <div class="dislike-icon">
         <img
-          v-if="userReaction === false"
+          v-if="props.post.userReaction === false"
           src="/icons/dislike-icon-active.svg"
           alt="dislike-icon"
         />
@@ -43,7 +43,6 @@
 <script setup lang="ts">
 import { usePostsStore } from '@/stores/postsStore';
 import type { IPost } from '@/types';
-import { ref } from 'vue';
 
 const props = defineProps<{
   post: IPost;
@@ -53,48 +52,50 @@ const postsStore = usePostsStore();
 
 const { updateReactions } = postsStore;
 
-const userReaction = ref<boolean | null>(null);
-
-const changeUserReaction = (newValue: boolean) => {
+const changeUserReaction = (newUserReaction: boolean) => {
   // Same btn click
-  if (newValue === userReaction.value) {
+  if (newUserReaction === props.post.userReaction) {
     const newReactions = { ...props.post.reactions };
 
-    if (newValue === true) {
+    if (newUserReaction === true) {
       newReactions.likes -= 1;
     } else {
       newReactions.dislikes -= 1;
     }
 
-    updateReactions(props.post.id, newReactions);
-
-    userReaction.value = null;
+    updateReactions(props.post.id, newReactions, null);
 
     return;
   }
 
   // Another btn click
-  if (newValue === true) {
-    const isDislikeBtnActive = userReaction.value === false;
+  if (newUserReaction === true) {
+    const isDislikeBtnActive = props.post.userReaction === false;
 
-    updateReactions(props.post.id, {
-      dislikes: isDislikeBtnActive
-        ? props.post.reactions.dislikes - 1
-        : props.post.reactions.dislikes,
-      likes: props.post.reactions.likes + 1,
-    });
-  } else if (newValue === false) {
-    const isLikeBtnActive = userReaction.value === true;
+    updateReactions(
+      props.post.id,
+      {
+        dislikes: isDislikeBtnActive
+          ? props.post.reactions.dislikes - 1
+          : props.post.reactions.dislikes,
+        likes: props.post.reactions.likes + 1,
+      },
+      newUserReaction,
+    );
+  } else if (newUserReaction === false) {
+    const isLikeBtnActive = props.post.userReaction === true;
 
-    updateReactions(props.post.id, {
-      likes: isLikeBtnActive
-        ? props.post.reactions.likes - 1
-        : props.post.reactions.likes,
-      dislikes: props.post.reactions.dislikes + 1,
-    });
+    updateReactions(
+      props.post.id,
+      {
+        likes: isLikeBtnActive
+          ? props.post.reactions.likes - 1
+          : props.post.reactions.likes,
+        dislikes: props.post.reactions.dislikes + 1,
+      },
+      newUserReaction,
+    );
   }
-
-  userReaction.value = newValue;
 };
 </script>
 

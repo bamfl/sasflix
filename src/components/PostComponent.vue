@@ -15,9 +15,9 @@
 
     <button
       class="underlined-btn accent-color mr-xs"
-      @click="$router.push(`/posts/${post.id}`)"
+      @click="onOpenCommentBtnClick"
     >
-      Open comments
+      {{ areCommentsOpen ? 'Close comments' : 'Open comments' }}
     </button>
 
     <div class="grey-1-color mr-xs">Today</div>
@@ -31,10 +31,29 @@
 <script setup lang="ts">
 import type { IPost } from '@/types';
 import ReactionsToggler from './ReactionsToggler.vue';
+import { useRoute, useRouter } from 'vue-router';
 
 const props = defineProps<{
   post: IPost;
+  areCommentsOpen?: boolean;
 }>();
+
+const emit = defineEmits<{
+  (e: 'toggleComments'): void;
+}>();
+
+const route = useRoute();
+const router = useRouter();
+
+const onOpenCommentBtnClick = () => {
+  console.log('route', route);
+
+  if (route.name === 'posts') {
+    router.push(`/posts/${props.post.id}`);
+  } else {
+    emit('toggleComments');
+  }
+};
 </script>
 
 <style lang="scss"></style>
