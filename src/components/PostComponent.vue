@@ -46,8 +46,6 @@ const route = useRoute();
 const router = useRouter();
 
 const onOpenCommentBtnClick = () => {
-  console.log('route', route);
-
   if (route.name === 'posts') {
     router.push(`/posts/${props.post.id}`);
   } else {
